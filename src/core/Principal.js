@@ -84,12 +84,17 @@ const Profile =({navigation, route})=>{
               </TouchableOpacity>
                 <View style={{flexDirection: 'column'}}>
                   <Text style={styles.textoPerfil}>{route.params.datosPaciente.nombres}</Text>
-                  <Text style={styles.textoPerfilSEcundario}>Paciente Diálisis Peritoneal</Text>
+                  {route.params.datosPaciente.tipoTrata==1?
+                  <Text style={styles.textoPerfilSEcundario}>Paciente Diálisis Peritoneal</Text>:null}
+                  {route.params.datosPaciente.tipoTrata==2?
+                  <Text style={styles.textoPerfilSEcundario}>Paciente Hemodiálisis</Text>
+                  :null}
                 </View>  
           </View>
         </View>
         <View style={styles.containerCenter}> 
                 <View>
+                  {route.params.datosPaciente.tipoTrata==1?
                   <TouchableOpacity style={{marginBottom: 40}} onPress={()=>{navigation.navigate('AgregarTrat', route.params.paciente)}}>
                   <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
                     <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
@@ -114,6 +119,8 @@ const Profile =({navigation, route})=>{
                     </View>
                   </View>
                   </TouchableOpacity>
+                  :null}
+                  {route.params.datosPaciente.tipoTrata==1?
                   <TouchableOpacity onPress={()=>{navigation.navigate('Profile', route.params.paciente.split("/")[4])}}>
                   <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
                     <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
@@ -138,6 +145,33 @@ const Profile =({navigation, route})=>{
                     </View>
                   </View>
                   </TouchableOpacity>
+                  :null}
+                  {route.params.datosPaciente.tipoTrata==2?
+                  <TouchableOpacity style={{marginBottom: 40}} onPress={()=>{navigation.navigate('VerResulLab', route.params)}}>
+                  <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
+                    <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
+                    <Image
+                    source={{
+                      uri: 'https://img.icons8.com/ultraviolet/40/000000/plus.png',
+                    }}
+                    style={styles.iconos}> 
+                    </Image>
+                    </View>
+                    <View style={{flexDirection: "column"}}>
+                    <Text style={{marginTop: 20, marginHorizontal: 20}}>Resultado</Text>
+                    <Text style={{marginTop: 5, marginHorizontal: 20}}>Laboratorio    </Text>
+                    </View>
+                    <View>
+                      <Image
+                      source={{
+                        uri: 'https://img.icons8.com/ultraviolet/40/000000/circled-chevron-right.png',
+                      }}
+                      style={styles.iconosEnd}> 
+                      </Image>
+                    </View>
+                  </View>
+                  </TouchableOpacity>
+                  :null}
                 </View>
         </View>
           <View style={styles.containerEnd}>

@@ -7,6 +7,7 @@ import Splash from '../screens/splash/Splash'
 import AgregarTrat from '../core/AgregarTrat'
 import Welcome from '../core/Welcome'
 import ApiEnvio from '../resource/ApiRest/ApiEnvio'
+import VerResulLab from '../core/VerResulLab'
 
 const Stack = createStackNavigator();
 const forFade =({current})=>({
@@ -48,6 +49,11 @@ const StackHome = () =>{
             <Stack.Screen
             name="ApiEnvio"
             component={ApiEnvio}
+            options={{header: () => null}}
+            />
+            <Stack.Screen
+            name="VerResulLab"
+            component={VerResulLab}
             options={{header: () => null}}
             />
             </Stack.Navigator>
