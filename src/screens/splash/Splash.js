@@ -49,9 +49,9 @@ const Splash = ({navigation}) => {
         />
         </TouchableOpacity>
         <Animated.View style={[styles.logoContainer, {marginLeft: moveAnim}]}>
-          <Text style={[styles.logoText]}>Dialisis </Text>
+          <Text style={[styles.logoText]}>Hemodiálisis-</Text>
           <Animated.Text style={[styles.logoTextSec, {opacity: fadeAnim}]}>
-            Peritoneal
+            D. Peritoneal
           </Animated.Text>
         </Animated.View>
       </View>

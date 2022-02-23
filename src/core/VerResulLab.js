@@ -110,7 +110,6 @@ const VerResulLab = ({ navigation, route }) => {
                 let array = []
                 for (let i = 0; i < res.data.length; i++) {
                   array.push([res.data[i].fecha_resultado, res.data[i].descexamen, res.data[i].valor_resultado, res.data[i].url])
-
                 }
                 setData(array)
                 console.log('resLab', array)
@@ -135,12 +134,46 @@ const VerResulLab = ({ navigation, route }) => {
   }, [])
 
   const element = (data, index) => (
-    <TouchableOpacity onPress={() => console.log(index)}>
+    <TouchableOpacity onPress={()=>{enviar(data)}}>
       <View style={styles.btn}>
         <Text style={styles.btnText}>Ver</Text>
       </View>
     </TouchableOpacity>
   );
+
+  const enviar = (data) => {
+    console.log('dataEnviar',data)
+      axios.post('http://143.198.231.64:8000/api/token/', {
+        "username": 'cnsr',
+        "password": '123456'
+      })
+        .then(
+          (response) => {
+            const auth = "Bearer " + response.data.access
+            axios.get('http://143.198.231.64:8000/examenLabo/'+data.split('/')[4],
+              {
+                headers: { 'Authorization ': auth }
+              }
+            )
+              .then(
+                (res) => {
+                  //console.log('respuestaDetalle',res.data)
+                  navigation.navigate('DetalleResulLab', res.data)
+                }
+              )
+              .catch(
+                (res) => {
+                  console.warn('Error:', res)
+                }
+              )
+          }
+        )
+        .catch(
+          (response) => {
+            response === 404 ? console.warn('lo sientimos no tenemos servicios') : console.warn('Error:', response)
+          }
+        )
+  };
   return (
     <>
       <View style={{ flex: 1 }}>

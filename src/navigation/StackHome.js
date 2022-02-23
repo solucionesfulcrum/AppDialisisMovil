@@ -8,6 +8,7 @@ import AgregarTrat from '../core/AgregarTrat'
 import Welcome from '../core/Welcome'
 import ApiEnvio from '../resource/ApiRest/ApiEnvio'
 import VerResulLab from '../core/VerResulLab'
+import DetalleResulLab from '../core/DetalleResulLab'
 
 const Stack = createStackNavigator();
 const forFade =({current})=>({
@@ -54,6 +55,11 @@ const StackHome = () =>{
             <Stack.Screen
             name="VerResulLab"
             component={VerResulLab}
+            options={{header: () => null}}
+            />
+            <Stack.Screen
+            name="DetalleResulLab"
+            component={DetalleResulLab}
             options={{header: () => null}}
             />
             </Stack.Navigator>

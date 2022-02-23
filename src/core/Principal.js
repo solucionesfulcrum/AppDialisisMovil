@@ -83,7 +83,7 @@ const Profile =({navigation, route})=>{
             />
               </TouchableOpacity>
                 <View style={{flexDirection: 'column'}}>
-                  <Text style={styles.textoPerfil}>{route.params.datosPaciente.nombres}</Text>
+                  <Text style={styles.textoPerfil}>{route.params.datosPaciente.nombres + ' ' +route.params.datosPaciente.ape_pat + ' ' +route.params.datosPaciente.ape_mat}</Text>
                   {route.params.datosPaciente.tipoTrata==1?
                   <Text style={styles.textoPerfilSEcundario}>Paciente Diálisis Peritoneal</Text>:null}
                   {route.params.datosPaciente.tipoTrata==2?
