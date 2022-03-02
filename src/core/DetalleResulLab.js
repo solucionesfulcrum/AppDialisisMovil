@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
     height: 30,
     borderRadius: 2,
   },
-  containerTable: { flex: 0.67, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
+  containerTable: { flex: 0.68, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   head: { height: 40, backgroundColor: '#13b4ec' },
   text: { margin: 6, color: '#fff' },
   textRow: { margin: 6, color: '#0D0D0E' },
@@ -128,6 +128,8 @@ const DetalleResulLab = ({ navigation, route }) => {
             <Text style={styles.respuestaDet}>{route.params.fecha_solicitud}</Text>
             <Text style={styles.containerCenter__title}>FECHA DE RESULTADOS:</Text>
             <Text style={styles.respuestaDet}>{route.params.fecha_resultado}</Text>
+            <Text style={styles.containerCenter__title}>HORA DE REGISTRO:</Text>
+            <Text style={styles.respuestaDet}>{route.params.hora_registro}</Text>
             <Text style={styles.containerCenter__title}>SOLICITANTE:</Text>
             <Text style={styles.respuestaDet}>{route.params.prof_solicita}</Text>
             <Text style={styles.containerCenter__title}>CODIGO DE EXAMEN:</Text>
@@ -138,8 +140,6 @@ const DetalleResulLab = ({ navigation, route }) => {
             <Text style={styles.respuestaDet}>{route.params.resultado}</Text>
             <Text style={styles.containerCenter__title}>INFORME:</Text>
             <Text style={styles.respuestaDet}>{route.params.informe_resultado}</Text>
-            <Text style={styles.containerCenter__title}>HORA DE REGISTRO:</Text>
-            <Text style={styles.respuestaDet}>{route.params.hora_registro}</Text>
           </ScrollView>
         </View>
         <View style={styles.containerEnd}>

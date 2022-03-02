@@ -75,9 +75,9 @@ export const styles = StyleSheet.create({
   containerTable: { flex: 0.75, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   head: { height: 40, backgroundColor: '#13b4ec' },
   text: { margin: 6, color: '#fff' },
-  textRow: { margin: 6, color: '#0D0D0E' },
+  textRow: { margin: 5, color: '#0D0D0E' },
   row: { flexDirection: 'row', backgroundColor: '#D6EBEC' },
-  btn: { width: 58, height: 18, backgroundColor: '#78B7BB', borderRadius: 2 },
+  btn: { width: 58, height: 22, backgroundColor: '#13b4ec', borderRadius: 2 },
   btnText: { textAlign: 'center', color: '#fff' }
 });
 
