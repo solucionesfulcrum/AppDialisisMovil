@@ -93,14 +93,14 @@ const VerResulLab = ({ navigation, route }) => {
   };
 
   useEffect(() => {
-    axios.post('http://143.198.231.64:8000/api/token/', {
+    axios.post('http://147.182.226.155:8000/api/token/', {
       "username": 'cnsr',
       "password": '123456'
     })
       .then(
         (response) => {
           const auth = "Bearer " + response.data.access
-          axios.get('http://143.198.231.64:8000/examenLabo/?search=' + route.params.datosPaciente.num_doc,
+          axios.get('http://147.182.226.155:8000/examenLabo/?search=' + route.params.datosPaciente.num_doc,
             {
               headers: { 'Authorization ': auth }
             }
@@ -109,10 +109,10 @@ const VerResulLab = ({ navigation, route }) => {
               (res) => {
                 let array = []
                 for (let i = 0; i < res.data.length; i++) {
-                  array.push([res.data[i].fecha_resultado, res.data[i].descexamen, res.data[i].valor_resultado, res.data[i].url])
+                  array.push([res.data[i].fecha_resultado, res.data[i].descexamen, res.data[i].resultado, res.data[i].url])
                 }
                 setData(array)
-                console.log('resLab', array)
+                console.log('resLab', res.data[0].resultado)
                 /*setData([['1', '1', '1', '1'],
                 ['1', '1', '1', '1'],
                 ['1', '1', '1', '1'],
@@ -143,14 +143,14 @@ const VerResulLab = ({ navigation, route }) => {
 
   const enviar = (data) => {
     console.log('dataEnviar',data)
-      axios.post('http://143.198.231.64:8000/api/token/', {
+      axios.post('http://147.182.226.155:8000/api/token/', {
         "username": 'cnsr',
         "password": '123456'
       })
         .then(
           (response) => {
             const auth = "Bearer " + response.data.access
-            axios.get('http://143.198.231.64:8000/examenLabo/'+data.split('/')[4],
+            axios.get('http://147.182.226.155:8000/examenLabo/'+data.split('/')[4],
               {
                 headers: { 'Authorization ': auth }
               }

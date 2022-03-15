@@ -124,14 +124,14 @@ const AgregarTrat =({navigation,route})=>{
     },[ultrafil,pres_art,pres_art_diast,peso,ultrafilVal,pres_artVal,pres_art_diastVal,pesoVal])
   const guardar = () =>{
       //navigation.navigate('ApiEnvio', datos)
-      axios.post('http://143.198.231.64:8000/api/token/',{
+      axios.post('http://147.182.226.155:8000/api/token/',{
         "username": 'cnsr',
         "password": '123456'
       })
       .then(
       (response)=>{
         const auth="Bearer "+response.data.access
-        axios.post('http://143.198.231.64:8000/dialisisPeritoneal/',
+        axios.post('http://147.182.226.155:8000/dialisisPeritoneal/',
         datos,
         {
           headers:{'Authorization ': auth}

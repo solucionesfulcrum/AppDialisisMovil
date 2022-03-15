@@ -42,14 +42,14 @@ const Profile =({navigation, route})=>{
   const [data, setData]=useState({});
   const [visible, setVisible]=useState(false);
   useEffect(()=>{
-    axios.post('http://143.198.231.64:8000/api/token/',{
+    axios.post('http://147.182.226.155:8000/api/token/',{
         "username": 'cnsr',
         "password": '123456'
       })
       .then(
       (response)=>{
         const auth="Bearer "+response.data.access
-        axios.get('http://143.198.231.64:8000/dialisisPeritoneal/?search='+route.params,
+        axios.get('http://147.182.226.155:8000/dialisisPeritoneal/?search='+route.params,
         {
           headers:{'Authorization ': auth}
         }

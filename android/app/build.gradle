@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.dialisisperitoneal"
+        applicationId "com.dialisis"
         minSdkVersion 30
         targetSdkVersion 30
         versionCode 5

@@ -57,28 +57,29 @@ const Welcome = ({ navigation }) => {
 
   const enviar = () => {
     if (valor.length >= 8) {
-      axios.post('http://143.198.231.64:8000/api/token/', {
+      axios.post('http://147.182.226.155:8000/api/token/', {
         "username": 'cnsr',
         "password": '123456'
       })
         .then(
           (response) => {
             const auth = "Bearer " + response.data.access
-            axios.get('http://143.198.231.64:8000/usuarios/?search=' + valor,
+            axios.get('http://147.182.226.155:8000/usuarios/?search=' + valor,
               {
                 headers: { 'Authorization ': auth }
               }
             )
               .then(
                 (res) => {
-                  console.log("login",res.data.length)
+                  console.log("login", res.data[0].primSesion)
                   if (res.data.length === 0) {
                     setVisible(true)
                     setLabel('Usuario no Registrado')
                     setOpacado(0.5)
-                  } else if(res.data[0].pass_user===valorPass) {
+                  } else if (res.data[0].pass_user === valorPass) {
+                    res.data[0].primSesion == 0 ? console.log("validamos primer inicio") :
                       navigation.navigate('Principal', res.data[0])
-                  } else{
+                  } else {
                     setVisible(true)
                     setLabel('Usuario o Clave Incorrecta')
                     setOpacado(0.5)
@@ -125,7 +126,7 @@ const Welcome = ({ navigation }) => {
               >
               </Image>
               <TouchableOpacity>
-                <Text style={{ marginVertical: 20, marginHorizontal: 5, color: '#0484cc', fontWeight: 'bold'}}>Ingresar con una cuenta Gmail</Text>
+                <Text style={{ marginVertical: 20, marginHorizontal: 5, color: '#0484cc', fontWeight: 'bold' }}>Ingresar con una cuenta Gmail</Text>
               </TouchableOpacity>
             </View>
           </View>

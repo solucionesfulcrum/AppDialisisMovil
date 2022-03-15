@@ -121,7 +121,7 @@ const Profile =({navigation, route})=>{
                   </TouchableOpacity>
                   :null}
                   {route.params.datosPaciente.tipoTrata==1?
-                  <TouchableOpacity onPress={()=>{navigation.navigate('Profile', route.params.paciente.split("/")[4])}}>
+                  <TouchableOpacity style={{marginBottom: 40}} onPress={()=>{navigation.navigate('Profile', route.params.paciente.split("/")[4])}}>
                   <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
                     <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
                     <Image
@@ -146,7 +146,7 @@ const Profile =({navigation, route})=>{
                   </View>
                   </TouchableOpacity>
                   :null}
-                  {route.params.datosPaciente.tipoTrata==2?
+                  {route.params.datosPaciente.tipoTrata==2 || route.params.datosPaciente.tipoTrata==1?
                   <TouchableOpacity style={{marginBottom: 40}} onPress={()=>{navigation.navigate('VerResulLab', route.params)}}>
                   <View style={{flexDirection: 'row', borderWidth: 0.1, borderRadius: 5}}>
                     <View style={{backgroundColor: '#13b4ec', borderRadius: 80, marginVertical: 10, marginLeft:20}}>
