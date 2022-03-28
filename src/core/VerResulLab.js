@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions, Alert, ScrollView} from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions, Alert, ScrollView } from 'react-native'
 import Footer from '../components/footer/Footer'
 import { Table, TableWrapper, Row, Rows, Cell, Col } from 'react-native-table-component';
 import axios from 'axios'
@@ -112,11 +112,6 @@ const VerResulLab = ({ navigation, route }) => {
                   array.push([res.data[i].fecha_resultado, res.data[i].descexamen, res.data[i].resultado, res.data[i].url])
                 }
                 setData(array)
-                console.log('resLab', res.data[0].resultado)
-                /*setData([['1', '1', '1', '1'],
-                ['1', '1', '1', '1'],
-                ['1', '1', '1', '1'],
-                ['1', '1', '1', '1']])*/
               }
             )
             .catch(
@@ -134,7 +129,7 @@ const VerResulLab = ({ navigation, route }) => {
   }, [])
 
   const element = (data, index) => (
-    <TouchableOpacity onPress={()=>{enviar(data)}}>
+    <TouchableOpacity onPress={() => { enviar(data) }}>
       <View style={styles.btn}>
         <Text style={styles.btnText}>Ver</Text>
       </View>
@@ -142,37 +137,37 @@ const VerResulLab = ({ navigation, route }) => {
   );
 
   const enviar = (data) => {
-    console.log('dataEnviar',data)
-      axios.post('http://147.182.226.155:8000/api/token/', {
-        "username": 'cnsr',
-        "password": '123456'
-      })
-        .then(
-          (response) => {
-            const auth = "Bearer " + response.data.access
-            axios.get('http://147.182.226.155:8000/examenLabo/'+data.split('/')[4],
-              {
-                headers: { 'Authorization ': auth }
+    console.log('dataEnviar', data)
+    axios.post('http://147.182.226.155:8000/api/token/', {
+      "username": 'cnsr',
+      "password": '123456'
+    })
+      .then(
+        (response) => {
+          const auth = "Bearer " + response.data.access
+          axios.get('http://147.182.226.155:8000/examenLabo/' + data.split('/')[4],
+            {
+              headers: { 'Authorization ': auth }
+            }
+          )
+            .then(
+              (res) => {
+                //console.log('respuestaDetalle',res.data)
+                navigation.navigate('DetalleResulLab', res.data)
               }
             )
-              .then(
-                (res) => {
-                  //console.log('respuestaDetalle',res.data)
-                  navigation.navigate('DetalleResulLab', res.data)
-                }
-              )
-              .catch(
-                (res) => {
-                  console.warn('Error:', res)
-                }
-              )
-          }
-        )
-        .catch(
-          (response) => {
-            response === 404 ? console.warn('lo sientimos no tenemos servicios') : console.warn('Error:', response)
-          }
-        )
+            .catch(
+              (res) => {
+                console.warn('Error:', res)
+              }
+            )
+        }
+      )
+      .catch(
+        (response) => {
+          response === 404 ? console.warn('lo sientimos no tenemos servicios') : console.warn('Error:', response)
+        }
+      )
   };
   return (
     <>
@@ -201,21 +196,24 @@ const VerResulLab = ({ navigation, route }) => {
           </View>
         </View>
         <View style={styles.containerTable}>
-        <ScrollView>
-          <Table borderStyle={{ borderColor: 'transparent' }}>
-            <Row data={CONTENT.tableHead} style={styles.head} textStyle={styles.textRow} />
-            {
-              CONTENT.tableData.map((rowData, index) => (
-                <TableWrapper key={index} style={styles.row}>
-                  {
-                    rowData.map((cellData, cellIndex) => (
-                      <Cell key={cellIndex} data={cellIndex === 3 ? element(cellData, index) : cellData} textStyle={styles.textRow} />
-                    ))
-                  }
-                </TableWrapper>
-              ))
+          <ScrollView>
+            {data.length != 0 ?
+              <Table borderStyle={{ borderColor: 'transparent' }}>
+                <Row data={CONTENT.tableHead} style={styles.head} textStyle={styles.textRow} />
+                {
+                  CONTENT.tableData.map((rowData, index) => (
+                    <TableWrapper key={index} style={styles.row}>
+                      {
+                        rowData.map((cellData, cellIndex) => (
+                          <Cell key={cellIndex} data={cellIndex === 3 ? element(cellData, index) : cellData} textStyle={styles.textRow} />
+                        ))
+                      }
+                    </TableWrapper>
+                  ))
+                }
+              </Table> :
+              <Text>no hay datos para mostrar</Text>
             }
-          </Table>
           </ScrollView>
         </View>
         <View style={styles.containerEnd}>
